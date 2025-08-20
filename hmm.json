@@ -3,7 +3,7 @@
     {
       "name": "lime",
       "type": "haxelib",
-      "version": "8.0.2"
+      "version": "8.2.2"
     },
     {
       "name": "openfl",
@@ -32,8 +32,10 @@
     },
     {
       "name": "hxcpp",
-      "type": "haxelib",
-      "version": "4.3.2"
+      "type": "git",
+      "dir": null,
+      "ref": "main",
+      "url": "https://github.com/VS-Null/hxcpp"
     },
     {
       "name": "tjson",
@@ -54,8 +56,10 @@
     },
     {
       "name": "SScript",
-      "type": "haxelib",
-      "version": null
+      "type": "git",
+      "dir": "src",
+      "ref": "main",
+      "url": "https://github.com/VS-Null/SScript"
     },
     {
       "name": "hxcpp-debug-server",

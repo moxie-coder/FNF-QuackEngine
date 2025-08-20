@@ -73,7 +73,7 @@ import psychlua.LuaUtils;
 import psychlua.HScript;
 #end
 
-#if (SScript >= "3.0.0")
+#if HSCRIPT_ALLOWED
 import tea.SScript;
 #end
 
@@ -2654,7 +2654,7 @@ class PlayState extends MusicBeatState
 				var lastTime:Float = Conductor.songPosition;
 				if(Conductor.songPosition >= 0) Conductor.songPosition = FlxG.sound.music.time;
 
-				if(inputSystem != null) {
+				if(inputSystem != null && Reflect.hasField(inputSystem, "keyPressed")) {
 					inputSystem.keyPressed(key);
 				}
 				else {
@@ -3279,13 +3279,9 @@ class PlayState extends MusicBeatState
 		try
 		{
 			var newScript:HScript = new HScript(null, file);
-			@:privateAccess
-			if(newScript.parsingExceptions != null && newScript.parsingExceptions.length > 0)
+			if (newScript.parsingException != null)
 			{
-				@:privateAccess
-				for (e in newScript.parsingExceptions)
-					if(e != null)
-						addTextToDebug('ERROR ON LOADING ($file): ${e.message.substr(0, e.message.indexOf('\n'))}', FlxColor.RED);
+				addTextToDebug('ERROR ON LOADING: ${newScript.parsingException.message}', FlxColor.RED);
 				newScript.destroy();
 				return;
 			}
